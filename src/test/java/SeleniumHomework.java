@@ -34,7 +34,8 @@ public class SeleniumHomework {
         driver.get(url);
 
         // Pobranie ceny produktu nr 7 //
-        String product7Price = driver.findElements(By.cssSelector(".price" + ".product-price")).get(13).getText();
+        List<WebElement> initialPricesList = driver.findElements(By.cssSelector(".price.product-price"));
+        String product7Price = initialPricesList.get(13).getText();
 
         // Najechanie myszka na obszar produktu, by uwidocznic dodanie do koszyka    //
         // (krok potrzebny w przypadku okna przegladarki wiekszego niz 1366x768 px)  //
@@ -54,7 +55,7 @@ public class SeleniumHomework {
         // Analogicznie dla kolejnego produktu, zaczynajac od waita //
         WebElement product4Img = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, 'id_product=4')]")));
-        String product4Price = driver.findElements(By.cssSelector(".price" + ".product-price")).get(7).getText();
+        String product4Price = initialPricesList.get(7).getText();
         actions.moveToElement(product4Img).build().perform();
 
         WebElement product4 = wait.until(
@@ -67,11 +68,11 @@ public class SeleniumHomework {
         // Dodanie trzeciego produktu, tym razem poprzez wejscie na podstrone produktu oraz zmiane koloru i rozmiaru //
         WebElement product2Img = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, 'id_product=2')]")));
-        String product2Price = driver.findElements(By.cssSelector(".price" + ".product-price")).get(3).getText();
+        String product2Price = initialPricesList.get(3).getText();
         actions.moveToElement(product2Img).build().perform();
 
         WebElement product2More = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.linkText("More")));
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, 'id_product=2') and (@title='View')]")));
         product2More.click();
 
         WebElement product2Color = wait.until(

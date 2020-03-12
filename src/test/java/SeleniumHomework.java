@@ -27,7 +27,7 @@ public class SeleniumHomework {
         actions = new Actions(driver);
     }
 
-    public String getInitialPrice(int id) {
+    private String getInitialPrice(int id) {
         // Pobranie ceny produktu o zadanym 'id' ze strony glownej //
         int j = (id*2) - 1;
         List<WebElement> initialPricesList = driver.findElements(By.cssSelector(".price.product-price"));
